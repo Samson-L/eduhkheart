@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Attack Risk Prediction</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 2em auto; background: #f7f7f7; }
+        form { background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+        label { display: block; margin-top: 1em; }
+        input, select { width: 100%; padding: 0.5em; margin-top: 0.2em; }
+        .result { margin-top: 2em; padding: 1em; background: #e0ffe0; border: 1px solid #b2ffb2; border-radius: 6px;}
+        @media (max-width: 600px) { body { padding: 1em; } }
+    </style>
+</head>
+<body>
+    <h2>Heart Attack Risk Prediction (China)</h2>
+    <form method="post">
+        {% for feature in features %}
+            <label>{{ feature.replace("_", " ") }}:</label>
+            {% if feature in categorical %}
+                <select name="{{ feature }}" required>
+                    {% for val in choices[feature] %}
+                        <option value="{{ val }}">{{ val }}</option>
+                    {% endfor %}
+                </select>
+            {% else %}
+                <input type="number" name="{{ feature }}" step="any" required>
+            {% endif %}
+        {% endfor %}
+        <button type="submit" style="margin-top:2em;">Predict</button>
+    </form>
+    {% if prediction %}
+    <div class="result">
+        <strong>Prediction:</strong> {{ prediction }}<br>
+        <strong>Probability:</strong> {{ probability }}
+    </div>
+    {% endif %}
+</body>
+</html>
