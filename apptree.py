@@ -1,6 +1,7 @@
 import pandas as pd
 from flask import Flask, render_template_string, request
 from sklearn.tree import DecisionTreeRegressor
+from flask_ngrok import run_with_ngrok
 
 # ===== MODEL TRAINING =====
 train_df = pd.read_csv('europeanheart-train.csv')
@@ -20,6 +21,7 @@ model.fit(X_train, y_train)
 
 app = Flask(__name__)
 
+run_with_ngrok(app)
 # Metadata for user-friendly form
 FEATURE_META = [
     {
