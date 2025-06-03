@@ -199,7 +199,7 @@ form_html = """
     </div>
   {% endif %}
   <footer style="margin-top:3em;font-size:85%;color:#888;">
-      &copy; Your Heart Risk App
+      Your Heart Risk App
   </footer>
 </body>
 </html>
