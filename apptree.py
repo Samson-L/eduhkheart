@@ -1,7 +1,8 @@
 import pandas as pd
 from flask import Flask, render_template_string, request
 from sklearn.tree import DecisionTreeRegressor
-from flask_ngrok import run_with_ngrok
+from pyngrok import ngrok
+import pyqrcode
 
 # ===== MODEL TRAINING =====
 train_df = pd.read_csv('europeanheart-train.csv')
@@ -21,7 +22,6 @@ model.fit(X_train, y_train)
 
 app = Flask(__name__)
 
-run_with_ngrok(app)
 # Metadata for user-friendly form
 FEATURE_META = [
     {
@@ -226,5 +226,12 @@ def index():
         prediction=prediction
     )
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+  #ngrok.set_auth_token("YOUR_AUTHTOKEN")
+  ngrok_tunnel = ngrok.connect(5000)
+  url = pyqrcode.create(ngrok_tunnel.public_url)
+  
+  print(url.terminal('black', 'white'))
+
+  print('Public URL:', ngrok_tunnel.public_url)
+  app.run()
