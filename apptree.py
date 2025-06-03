@@ -166,7 +166,7 @@ form_html = """
   </style>
 </head>
 <body>
-  <h1>European Heart Risk Predictor</h1>
+  <h1>Web Heart Risk Predictor</h1>
   <form method="post" autocomplete="off">
     {% for feat in FEATURE_META %}
       <label for="{{ feat.name }}">{{ feat.label }}</label>
