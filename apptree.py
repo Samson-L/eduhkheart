@@ -151,7 +151,7 @@ form_html = """
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>European Heart Risk Predictor</title>
+  <title>Web Heart Risk Predictor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
       body { font-family: sans-serif; margin: 2em; }
